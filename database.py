@@ -1,7 +1,6 @@
 import streamlit as st
 from supabase import create_client
 
-# Pulling from your secrets.toml (Keep this file out of GitHub!)
 URL = st.secrets["SUPABASE_URL"]
 KEY = st.secrets["SUPABASE_KEY"]
 
@@ -70,7 +69,7 @@ def apply_custom_design():
         font-weight: bold !important;
     }
 
-    /* 7. WIDGET ICONS */
+    /* WIDGET ICONS */
     button[pagemediastyle="true"], [data-testid="stIcon"] {
         color: #4A148C !important;
     }
