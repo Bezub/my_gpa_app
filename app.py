@@ -2,7 +2,7 @@ import streamlit as st
 
 # 1. Define the pages
 # (Make sure the filenames match exactly what you named them in your folder)
-home_page = st.Page("home.py", title="Home", icon="🏠", default=True)
+home_page = st.Page("Home.py", title="Home", icon="🏠", default=True)
 calc_page = st.Page("pages/gpa_calculator.py", title="GPA Calculator", icon="🧮")
 trans_page = st.Page("pages/transcript_and_cgpa.py", title="Transcript", icon="📜")
 admin_page = st.Page("admin_portal.py", title="Admin Panel", icon="🛡️")
