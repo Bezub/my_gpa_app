@@ -129,7 +129,6 @@ st.markdown(layout_code, unsafe_allow_html=True)
 
 st.write("")
 if st.button(" UPGRADE TO BEZUB PRO", use_container_width=True):
-    st.balloons()
     st.toast("Pro features are coming soon!", icon="🎓")
 
 st.markdown(
