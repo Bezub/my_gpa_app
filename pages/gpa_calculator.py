@@ -103,4 +103,8 @@ if st.button("Confirm and Save"):
                     st.balloons()
                 except Exception as e:
                     st.error(f"Error saving data: {e}")
+
+st.markdown(
+    "<p style='text-align: center; color: #4A148C; font-size: 12px; margin-top: 50px; opacity: 0.6;'>© 2026 Bezub Academic Systems.</p>",
+    unsafe_allow_html=True)
                     
