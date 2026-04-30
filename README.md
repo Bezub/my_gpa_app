@@ -1,5 +1,8 @@
 # Bezub Academic Portal (Version 1)
 
+**Live App:** [Open Here](https://bezub-academic-system.streamlit.app/)
+
+
 A strategic GPA management system built with **Python**, **Streamlit**, and **Supabase**. 
 
 ## Features
