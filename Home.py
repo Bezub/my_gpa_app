@@ -10,7 +10,7 @@ if "username" not in st.session_state:
 
 
 def handle_auth():
-    st.title("🔐 Academic Portal")
+    st.title("Academic Portal")
     choice = st.radio("Select Action:", ["Login", "Register"])
     user = st.text_input("Username").lower().strip()
     pwd = st.text_input("Password", type="password")
