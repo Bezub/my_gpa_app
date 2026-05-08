@@ -72,7 +72,7 @@ with st.spinner("Accessing cloud records..."):
 
         # --- DELETE LOGIC SECTION ---
         st.divider()
-        st.subheader("🗑️ Manage Records")
+        st.subheader("Manage Records")
         with st.expander("Remove an Incorrect Entry"):
             # We use the full original list to ensure we can map back to the ID or exact timestamp
             to_delete_date = st.selectbox("Select Record Date to Delete:", df['created_at'].tolist())
@@ -117,7 +117,7 @@ with st.spinner("Accessing cloud records..."):
         if full_name_input:
             try:
                 pdf_bytes = create_pdf(display_df, full_name_input, cgpa)
-                st.download_button(label="📑 Download Unofficial PDF Transcript", data=pdf_bytes, file_name=f"{full_name_input.replace(' ', '_')}_Transcript.pdf", mime="application/pdf")
+                st.download_button(label="Download Unofficial PDF Transcript", data=pdf_bytes, file_name=f"{full_name_input.replace(' ', '_')}_Transcript.pdf", mime="application/pdf")
             except Exception as e: st.error(f"Error: {e}")
 
 st.markdown(
