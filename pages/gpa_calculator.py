@@ -38,7 +38,7 @@ def gfec(score):
         return 0.0
 
 
-st.header("🧮 Semester GPA Calculator")
+st.header("Semester GPA Calculator")
 
 # Error Handling for input
 num_courses = st.number_input("Number of courses", min_value=1, max_value=15, value=5)
