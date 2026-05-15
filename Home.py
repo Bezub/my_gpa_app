@@ -27,19 +27,12 @@ def handle_auth():
                 st.success("Account created! You can now switch to Login.")
     else:
         if st.button("Login"):
-            try:
-                res = supabase.table("users").select("*").eq("username", user).eq("password", pwd).execute()
-
-                st.write(res)
-
-                if res.data:
-                    st.session_state.username = user
-                    st.rerun()
-                else:
-                    st.error("Invalid username or password.")
-
-            except Exception as e:
-                st.error(str(e))
+            res = supabase.table("users").select("*").eq("username", user).eq("password", pwd).execute()
+            if res.data:
+                st.session_state.username = user
+                st.rerun()
+            else:
+                st.error("Invalid username or password.")
 
 
 if not st.session_state.username:
