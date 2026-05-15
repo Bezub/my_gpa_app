@@ -1,6 +1,7 @@
 import streamlit as st
 import datetime
 from database import supabase, apply_custom_design
+from werkzeug.security import generate_password_hash, check_password_hash
 
 st.set_page_config(page_title="Bezub's Academic Portal", layout="wide")
 apply_custom_design()
@@ -23,12 +24,13 @@ def handle_auth():
             elif len(user) < 4 or len(pwd) < 4:
                 st.error("Username and Password must be at least 4 characters.")
             else:
-                supabase.table("users").insert({"username": user, "password": pwd}).execute()
+                hashed = generate_password_hash(pwd)
+                supabase.table("users").insert({"username": user, "password": hashed}).execute()
                 st.success("Account created! You can now switch to Login.")
     else:
         if st.button("Login"):
-            res = supabase.table("users").select("*").eq("username", user).eq("password", pwd).execute()
-            if res.data:
+            res = supabase.table("users").select("*").eq("username", user).execute()
+            if res.data and check_password_hash(res.data[0]["password"], pwd):
                 st.session_state.username = user
                 st.rerun()
             else:
