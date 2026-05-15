@@ -1,7 +1,6 @@
 import streamlit as st
 import datetime
 from database import supabase, apply_custom_design
-from werkzeug.security import generate_password_hash, check_password_hash
 
 st.set_page_config(page_title="Bezub's Academic Portal", layout="wide")
 apply_custom_design()
@@ -24,13 +23,12 @@ def handle_auth():
             elif len(user) < 4 or len(pwd) < 4:
                 st.error("Username and Password must be at least 4 characters.")
             else:
-                hashed = generate_password_hash(pwd)
-                supabase.table("users").insert({"username": user, "password": hashed}).execute()
+                supabase.table("users").insert({"username": user, "password": pwd}).execute()
                 st.success("Account created! You can now switch to Login.")
     else:
         if st.button("Login"):
-            res = supabase.table("users").select("*").eq("username", user).execute()
-            if res.data and check_password_hash(res.data[0]["password"], pwd):
+            res = supabase.table("users").select("*").eq("username", user).eq("password", pwd).execute()
+            if res.data:
                 st.session_state.username = user
                 st.rerun()
             else:
@@ -42,7 +40,7 @@ if not st.session_state.username:
     st.stop()
 
 with st.sidebar:
-    st.success(f"👤 Logged in: **{st.session_state.username}**")
+    st.success(f"👤 Logged in: {st.session_state.username}")
 
     st.divider()
     st.subheader("✉️ Support & Feedback")
@@ -93,7 +91,6 @@ st.markdown(f"""
     </p>
 </div>
 """, unsafe_allow_html=True)
-
 st.subheader("Your Academic Suite")
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -110,7 +107,7 @@ with col3:
         unsafe_allow_html=True)
 
 st.divider()
-st.info("**Why Bezub?** We don't just calculate numbers; we help you plan your future.")
+st.info("Why Bezub? We don't just calculate numbers; we help you plan your future.")
 
 st.write("---")
 
